@@ -27,7 +27,7 @@ export default class CarouselMaker {
     const carouselList = Array.from({ length: this.carouselCount }, (_, i) => i);
     this.carouselListTemplate =
       carouselList.reduce(
-        (acc, cur) => (acc += `<li class="carousel_item" id="carousel_item${cur}">${cur}</li>`),
+        (acc, cur) => (acc += `<li class="carousel_item" id="carousel_item${cur}"></li>`),
         `<ul class="carousel">`
       ) + `</ul>`;
   }
@@ -50,7 +50,8 @@ export default class CarouselMaker {
 
   translateCarousel({ target: { className } }) {
     const translateDirection = this.decideAddEventOrNot(className);
-    this.decideAddEventOrNot(className) === 'prev' ? this.translateLeft() : this.translateRight();
+    if (this.decideAddEventOrNot(className) === 'prev') this.translateLeft();
+    if (this.decideAddEventOrNot(className) === 'next') this.translateRight();
 
     this.carousel.style.transitionDuration = `${this.carouselTransitionDuration}ms`;
     this.carousel.ontransitionend = () => this.resortCarousel(translateDirection);
