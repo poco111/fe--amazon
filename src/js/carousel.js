@@ -73,7 +73,6 @@ export default class CarouselMaker {
 
       if (elapsedTime >= this.carouseDelayDuration) {
         this.translateCarousel({ target: { className: 'carousel_button next' } });
-        this.animationStartTime = null;
       }
 
       requestAnimationFrame(animateCarousel);
